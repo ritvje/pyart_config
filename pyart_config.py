@@ -79,6 +79,8 @@ linear_depolarization_ratio_v = 'linear_depolarization_ratio_v'
 # Misc fields
 signal_to_noise_ratio = 'signal_to_noise_ratio'
 log_signal_to_noise_ratio = 'log_signal_to_noise_ratio'
+clutter_to_signal_ratio = 'clutter_to_signal_ratio'
+clutter_power_ratio = 'clutter_power_ratio'
 rain_rate = 'rain_rate'
 radar_estimated_rain_rate = 'radar_estimated_rain_rate'
 radar_echo_classification = 'radar_echo_classification'
@@ -170,6 +172,9 @@ DEFAULT_FIELD_NAMES = {
     'linear_depolarization_ratio_h': linear_depolarization_ratio_h,
     'linear_depolarization_ratio_v': linear_depolarization_ratio_v,
     'signal_to_noise_ratio': signal_to_noise_ratio,
+    'log_signal_to_noise_ratio': log_signal_to_noise_ratio,
+    'clutter_power_ratio': clutter_power_ratio,
+    'clutter_to_signal_ratio': clutter_to_signal_ratio,
     'rain_rate': rain_rate,
     'radar_estimated_rain_rate': radar_estimated_rain_rate,
     'radar_echo_classification': radar_echo_classification,
@@ -596,7 +601,19 @@ DEFAULT_METADATA = {
     log_signal_to_noise_ratio: {
         'units': 'dB',
         'standard_name': 'log_signal_to_noise_ratio',
-        'long_name': 'LOG signal to noise ratio',
+        'long_name': 'Log signal to noise ratio',
+        'coordinates': 'elevation azimuth range'},
+
+    clutter_to_signal_ratio: {
+        'units': 'dB',
+        'standard_name': 'clutter_to_signal_ratio',
+        'long_name': 'Doppler channel clutter-to-signal ratio',
+        'coordinates': 'elevation azimuth range'},
+
+    clutter_power_ratio: {
+        'units': 'dB',
+        'standard_name': 'clutter_power_ratio',
+        'long_name': 'Doppler channel clutter power ratio',
         'coordinates': 'elevation azimuth range'},
 
     rain_rate: {
@@ -978,8 +995,12 @@ sigmet_field_mapping = {
                                                 # (58) Corrected diff. refl.
     'SNR8': signal_to_noise_ratio,
     'SNR16': signal_to_noise_ratio,
-    # 'LOG8': log_signal_to_noise_ratio,
-    # 'LOG16': log_signal_to_noise_ratio,
+    'CSR8': clutter_to_signal_ratio,
+    'CSR16': clutter_to_signal_ratio,
+    'LOG8': log_signal_to_noise_ratio,
+    'LOG16': log_signal_to_noise_ratio,
+    'CSP8': clutter_power_ratio,
+    'CSP16': clutter_power_ratio,
     'UNKNOWN_59': None,                         # Unknown field
     'UNKNOWN_60': None,                         # Unknown field
     'UNKNOWN_61': None,                         # Unknown field
@@ -988,6 +1009,8 @@ sigmet_field_mapping = {
     'UNKNOWN_64': None,                         # Unknown field
     'UNKNOWN_65': None,                         # Unknown field
     'UNKNOWN_66': None,                         # Unknown field
+    'UNKNOWN_78': log_signal_to_noise_ratio,
+    'UNKNOWN_80': clutter_power_ratio,
     # there may be more field, add as needed
 }
 
@@ -1393,6 +1416,7 @@ DEFAULT_FIELD_COLORMAP = {
     corrected_reflectivity: 'pyart_HomeyerRainbow',
     total_power: 'pyart_HomeyerRainbow',
     signal_to_noise_ratio: 'pyart_Carbone17',
+    clutter_to_signal_ratio: 'pyart_Carbone17',
 
     velocity: 'pyart_BuDRd18',
     corrected_velocity: 'pyart_BuDRd18',
@@ -1457,6 +1481,7 @@ DEFAULT_FIELD_LIMITS = {
     corrected_reflectivity: (-30., 75.),
     total_power: (-30., 75.),
     signal_to_noise_ratio: (-20, 30.),
+    clutter_to_signal_ratio: (-20, 30.),
 
     velocity: velocity_limit,
     corrected_velocity: velocity_limit,
