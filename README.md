@@ -15,3 +15,4 @@ pyart.load_config(os.environ.get('PYART_CONFIG'))
 The following modifications have been done compared to the original config file:
 
 - In IRIS format, add `SNR8`/`SNR16` fields as `signal_to_noise_ratio` type field to be able to read SNR in RAW-files
+- Add metadata definition for melting layer designation (to be compliant with MeteoSwiss Py-ART `melting_layer_giangrande` function)

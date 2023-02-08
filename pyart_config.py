@@ -790,7 +790,11 @@ DEFAULT_METADATA = {
 
     'radar_name': {
         'long_name': 'Name of radar used to make the grid', },
-
+    "melting_layer": {
+        "long_name": "Melting layer designation for range gates",
+        "labels": ["BELOW", "ENTERING", "WITHIN", "EXITING", "ABOVE"],
+        "ticks": [1, 2, 3, 4, 5],
+    },
 }
 
 
