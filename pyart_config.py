@@ -87,6 +87,7 @@ radar_echo_classification = "radar_echo_classification"
 specific_attenuation = "specific_attenuation"
 specific_differential_attenuation = "specific_differential_attenuation"
 clutter_filter_power_removed = "clutter_filter_power_removed"
+polarimetric_meteo_index = "polarimetric_meteo_index"
 
 # Textures
 differential_phase_texture = "differential_phase_texture"
@@ -174,6 +175,7 @@ DEFAULT_FIELD_NAMES = {
     "log_signal_to_noise_ratio": log_signal_to_noise_ratio,
     "clutter_power_ratio": clutter_power_ratio,
     "clutter_to_signal_ratio": clutter_to_signal_ratio,
+    "polarimetric_meteo_index": polarimetric_meteo_index,
     "rain_rate": rain_rate,
     "radar_estimated_rain_rate": radar_estimated_rain_rate,
     "radar_echo_classification": radar_echo_classification,
@@ -607,6 +609,15 @@ DEFAULT_METADATA = {
         "long_name": "Doppler channel clutter power ratio",
         "coordinates": "elevation azimuth range",
     },
+    polarimetric_meteo_index: {
+        "units": "ratio",
+        "standard_name": "polarimetric_meteo_index",
+        "long_name": "Polarimetric Meteo Index",
+        "valid_max": 1.0,
+        "valid_min": 0.0,
+        "comment": "",
+        "coordinates": "elevation azimuth range",
+    },
     rain_rate: {
         "units": "kg/m2/s",
         "standard_name": "rain_rate",
@@ -993,6 +1004,8 @@ sigmet_field_mapping = {
     "LOG16": log_signal_to_noise_ratio,
     "CSP8": clutter_power_ratio,
     "CSP16": clutter_power_ratio,
+    "PMI8": polarimetric_meteo_index,
+    "PMI16": polarimetric_meteo_index,
     "UNKNOWN_59": None,  # Unknown field
     "UNKNOWN_60": None,  # Unknown field
     "UNKNOWN_61": None,  # Unknown field
